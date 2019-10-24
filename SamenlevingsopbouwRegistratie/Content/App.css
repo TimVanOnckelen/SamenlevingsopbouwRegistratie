@@ -1,0 +1,39 @@
+﻿#registratie-app-container {
+    padding: 15px;
+    background-color: 1px solid #EFEFEF;
+}
+#registratie-container {
+    background-color: #D9E9ED;
+}
+.navbar {
+    padding: 10px;
+    border: 1px solid #006D87;
+    margin-left: -12px;
+    margin-bottom: 25px;
+}
+    .navbar a {
+        color: #006D87;
+        text-decoration: none;
+    }
+#contentBox {
+    margin: 0;
+}
+#momenten-overview {
+    max-height: 100%;
+    position: relative;
+    overflow-y: scroll;
+}
+#momenten-overview ul {
+
+}
+    #momenten-overview ul li {
+        margin: 0px;
+        padding: 15px;
+        background-color: #a8b6ba;
+        margin: 0px;
+        border-radius: 0px;
+    }
+        #momenten-overview ul li:nth-child(2n+1) {
+            background-color: #fff;
+            
+        }
