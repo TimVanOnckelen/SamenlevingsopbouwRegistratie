@@ -16,16 +16,18 @@
         <script type="text/javascript" src="/_layouts/15/sp.js"></script> 
     <!-- Add your CSS styles to the following file -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" integrity="sha256-vK3UTo/8wHbaUn+dTQD0X6dzidqc5l7gczvH+Bnowwk=" crossorigin="anonymous" />
-    <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/css/multi-select.min.css" integrity="sha256-l4jVb17uOpLwdXQPDpkVIxW9LrCRFUjaZHb6Fqww/0o=" crossorigin="anonymous" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+        <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
     <script src="https://kit.fontawesome.com/342a2c41d4.js" crossorigin="anonymous"></script>
 
     <!-- Add your JavaScript to the following file -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/gitbrent/SpRestLib@1.9.0/dist/sprestlib.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-loading-overlay/2.1.6/loadingoverlay.min.js" integrity="sha256-CImtjQVvmu/mM9AW+6gYkksByF4RBCeRzXMDA9MuAso=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js" integrity="sha256-MPgtcamIpCPKRRm1ppJHkvtNBAuE71xcOM+MmQytXi8=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js" integrity="sha256-2RS1U6UNZdLS0Bc9z2vsvV4yLIbJNKxyA4mrx5uossk=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../Scripts/App.js"></script>
 
 </asp:Content>
@@ -52,6 +54,7 @@
             <a class="navbar-item" href="#">Registreren & overzicht</a>
             <a class="navbar-item" href="#">Woordenboek</a>
             <a class="navbar-item" href="#">Hoe werkt dit?</a>
+
         </div>
         <div class="navbar-end">
             <div class="buttons">
@@ -62,10 +65,9 @@
         </div>
     </nav>
 
-        <div class="columns">
-
+        <div class="columns" id="app-container-main">
           <div id="registratie-container" class="column">
-              <h2 class="title is-3">Nieuwe registratie</h2>
+              <h2 class="title is-4">Nieuwe registratie</h2>
                             <div class="field">       
                     <label for="project">Project</label>
                     <select class="select2" id="project" name="project"  class="input is-medium" required="required">
@@ -142,6 +144,11 @@
                 </div>
 
                     </div>
+                  <div id="momenten-stats">
+                      <ul>
+                          <li>Aantal momenten zichtbaar: <span class="amount-moments">0</span></li>
+                      </ul>
+                  </div>
                     <div id="momenten-overview">
                         <ul>
                         </ul>
@@ -150,7 +157,5 @@
 
 
     </div>
-
-   
 
 </asp:Content>
