@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" integrity="sha256-vK3UTo/8wHbaUn+dTQD0X6dzidqc5l7gczvH+Bnowwk=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/css/multi-select.min.css" integrity="sha256-l4jVb17uOpLwdXQPDpkVIxW9LrCRFUjaZHb6Fqww/0o=" crossorigin="anonymous" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
-        <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
+        <link rel="Stylesheet" type="text/css" href="https://xeweb.be/cdn/samenlevingsopbouw/App.css" />
     <script src="https://kit.fontawesome.com/342a2c41d4.js" crossorigin="anonymous"></script>
 
     <!-- Add your JavaScript to the following file -->
@@ -28,7 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
     <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js" integrity="sha256-2RS1U6UNZdLS0Bc9z2vsvV4yLIbJNKxyA4mrx5uossk=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../Scripts/App.js"></script>
+    <script type="text/javascript" src="https://xeweb.be/cdn/samenlevingsopbouw/App.js"></script>
 
 </asp:Content>
 
@@ -36,7 +36,13 @@
 <%-- The markup and script in the following Content element will be placed in the <body> of the page --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
 
+
+
     <div class="container" id="registratie-app-container">
+               <div id="topMenu">
+          <iframe src="https://samenlevingsopbouw.sharepoint.com/sites/sas/SitePages/navigatie menu.html"><</iframe>
+       </div>
+
     <nav class="navbar" id="navigation">
           <div class="navbar-brand">
             <a class="navbar-item" href="#">
@@ -51,15 +57,13 @@
 
         </div>
         <div class="navbar-start">
-            <a class="navbar-item" href="#">Registreren & overzicht</a>
-            <a class="navbar-item" href="#">Woordenboek</a>
-            <a class="navbar-item" href="#">Hoe werkt dit?</a>
-
+            <a class="navbar-item" href="#app-container-main">Registreren & overzicht</a>
+            <a class="navbar-item" href="#woordenboek">Woordenboek</a>
         </div>
         <div class="navbar-end">
             <div class="buttons">
                 <div class="button is-primary">
-                    Welkom, <span data-content="user.name"></span>
+                   <a href="#" id="user-profile">Welkom, <span data-content="user.name"></span></a>
                 </div>
             </div>
         </div>
@@ -68,6 +72,18 @@
         <div class="columns" id="app-container-main">
           <div id="registratie-container" class="column">
               <h2 class="title is-4">Nieuwe registratie</h2>
+
+                              <div class="field">
+                    <label for="datum">Datum</label>
+                    <input id="datum" class="input is-medium" type="date" value="" name="datum" required="required" />
+                </div>
+                              <div class="field">
+                    <label for="locatie">Locatie</label>
+                    <select class="select2" id="locatie" name="locatie"  class="input is-medium" required="required">
+                        <option></option>
+                    </select>
+                </div>
+
                             <div class="field">       
                     <label for="project">Project</label>
                     <select class="select2" id="project" name="project"  class="input is-medium" required="required">
@@ -79,16 +95,6 @@
                     <select class="select2" id="activiteit" name="activiteit"  class="input is-medium" required="required">
                         <option></option>
                     </select>      
-                </div>
-                <div class="field">
-                    <label for="locatie">Locatie</label>
-                    <select class="select2" id="locatie" name="locatie"  class="input is-medium" required="required">
-                        <option></option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label for="datum">Datum</label>
-                    <input id="datum" class="input is-medium" type="date" value="" name="datum" required="required" />
                 </div>
                 <div class="field">
                     <label for="titel">Titel</label>
@@ -143,6 +149,14 @@
                     </select>
                 </div>
 
+                        
+                                                <div class="field">       
+                    <label for="filer-project">Filter activiteit</label>
+                    <select class="select2" id="filter-activiteit" name="filter-activiteit" class="input is-medium">
+                        <option value="">Alle activiteiten</option>
+                    </select>
+                </div>
+
                     </div>
                   <div id="momenten-stats">
                       <ul>
@@ -157,5 +171,9 @@
 
 
     </div>
+
+        <div id="woordenboek"  class="columns">
+            
+        </div>
 
 </asp:Content>

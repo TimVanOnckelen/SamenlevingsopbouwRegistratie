@@ -3,12 +3,17 @@
 <App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
      Name="SamenlevingsopbouwAntwerpenRegistratie"
      ProductID="{659e1ec4-308c-4b87-ae1e-c888770fda14}"
-     Version="1.0.0.2"
+     Version="1.0.0.5"
      SharePointMinVersion="16.0.0.0"
 >
   <Properties>
     <Title>Samenlevingsopbouw Registratie</Title>
     <StartPage>~appWebUrl/Pages/Default.aspx?{StandardTokens}</StartPage>
+    <SupportedLocales>
+      <SupportedLocale CultureName="nl-BE" />
+      <SupportedLocale CultureName="en" />
+      <SupportedLocale CultureName="en-US" />
+    </SupportedLocales>
   </Properties>
 
   <AppPrincipal>
