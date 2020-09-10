@@ -38,15 +38,16 @@
 
 
 
+
+
     <div class="container" id="registratie-app-container">
                <div id="topMenu">
-          <iframe src="https://samenlevingsopbouw.sharepoint.com/sites/sas/SitePages/navigatie menu.html"><</iframe>
-       </div>
+                 </div>
 
     <nav class="navbar" id="navigation">
           <div class="navbar-brand">
             <a class="navbar-item" href="#">
-                <img src="https://samenlevingsopbouw-antwerpenstad.be/wp-content/themes/samenlevingsopbouw/dist/img/logo-antwerpen.svg" width="112" height="28">
+                <img src="https://xeweb.be/cdn/samenlevingsopbouw/logo.png" width="112" height="28">
             </a>
 
             <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -116,18 +117,18 @@
                         <option></option>
                     </select>
                    <label for="aantalDeelnemers">Aantal Deelnemers</label>
-                   <input type="number" id="aantalDeelnemers" name="aantalDeelnemers" value="0" class="input is-medium" />
-                   <label for="aantalOplossingact">Aantal opl. actoren</label>
-                   <input type="number" id="aantalOplossingact" name="aantalOplossingact" value="0" class="input is-medium" />
+                   <input type="number" id="aantalDeelnemers" name="aantalDeelnemers" value="0" min="0" step="1" class="input is-medium" />
+
                 </div>
           <div class="field">       
                     <label for="partners">Partners</label>
-                    <select class="select2" multiple="multiple" id="partners" name="partners">
+                    <select class="select2" multiple="multiple" id="partners" name="partners" min="0" step="1" >
                         <option></option>
                     </select>
                    <label for="aantalPartners">Aantal Partners</label>
-                   <input type="number" id="aantalPartners" name="aantalPartners" value="0" class="input is-medium" />
-    
+                   <input type="number" id="aantalPartners" name="aantalPartners" value="0" min="0" step="1"  class="input is-medium" />
+                       <label for="aantalOplossingact">Aantal opl. actoren</label>
+                   <input type="number" id="aantalOplossingact" name="aantalOplossingact" value="0" min="0" step="1"  class="input is-medium" />
                 </div>
 
                     <a id="saveRegistratie" class="button is-large is-primary">Opslaan</a>

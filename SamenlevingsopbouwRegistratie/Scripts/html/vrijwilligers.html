@@ -1,0 +1,342 @@
+<div class="columns">
+    <div class="column">
+        <section>
+            <div class="appFilters">
+                <h2 class="title is-3">Overzicht Vrijwilligers & Deelnemers</h2>
+                <div class="columns is-multiline">
+                    <div class="column is-half">
+                        <label for="vrijwilligers-filter-locatie">Locatie</label>
+                        <select id="vrijwilligers-filter-locatie" class="filter-vrij select2"><option></option></select>
+                        <label for="vrijwilligers-filter-project">Project</label>
+                        <select id="vrijwilligers-filter-project" class="filter-vrij select2"><option></option></select>
+                    </div>
+                    <div class="column is-half">
+                        <label for="vrijwilligers-filter-contact">Contact</label>
+                        <select id="vrijwilligers-filter-contact" class="filter-vrij select2"><option></option></select>
+                        <label for="vrijwilligers-filter-statuut">Statuut</label>
+                        <select id="vrijwilligers-filter-statuut" class="filter-vrij select2"><option value="">Alle</option><option value="vrijwilliger">Vrijwilliger</option><option value="deelnemer">Deelnemer</option></select>
+                    </div>
+                    <div class="column is-half">
+                    <div class="field">
+                        <label for="vrijwilligers-filter-search">Zoek op naam</label>
+                        <input type="text" value="" placeholder="Type een naam om te zoeken" class="input filter-vrij" id="vrijwilligers-filter-search" />
+                    </div>
+                    </div>
+                    <div class="column is-half" style="text-align: center; vertical-align: middle;">
+                        <a class="button is-medium is-light" href="#" id="addNewVrijwilliger">Nieuwe deelnemer/vrijwilliger maken</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="loadingOverflow">Laden...</div>
+        <section id="vrijwilligers-overview" class="appTable">
+            <p>Aantal personen zichtbaar: {{amountOfPersons}}</p>
+
+            <div id="archief-filter-container">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="filter-vrij onoffswitch-checkbox" id="vrijwilliger-filter-archief">
+                    <label class="onoffswitch-label" for="vrijwilliger-filter-archief">
+                        <span class="onoffswitch-inner"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </div>
+            </div>
+
+
+            <input type="checkbox" id="check-all-vrijwilligers" style="display: inline-block; width: 25px; height: 25px;"> <label for="check-all-vrijwilligers">Selecteer alle personen</label>
+            <div id="vrijwilligers-checkbox-function">
+                <a href="#" id="bulkMailVrijwilligers"><i class="fas fa-mail-bulk"></i></a>
+                <a href="#" id="bulkSmsVrijwilligers"><i class="fas fa-phone"></i></a>
+            </div>
+
+            <ul class="item-list">
+                <li v-if="!recordViewEntries.length">Geen resultaten.</li>
+                <li v-for="item in recordViewEntries">
+                    <input type="checkbox" class="vrijwilliger-checkbox" :data-mail="item.Mail" :data-phone="item.telefoon" style="display: inline-block; width: 25px; height: 25px;" />
+                    <a href="#" class="is-active openPerson" :data-id="item.Id" style="display: inline-block;">
+                        <b>{{item.VolledigeNaam}}</b><br />
+                        {{item.Mail}}<br />
+                        {{item.telefoon}}<br />
+                        <span title="Gearchiveerd" class="vrijwilliger-icon" v-if="item.Archief === true"><i class="fas fa-archive"></i></span>
+                        <span title="Vrijwilliger"  class="vrijwilliger-icon" v-if="item.statuut === 'vrijwilliger' && item.Archief !== true"><i class="fas fa-people-carry"></i></span>
+                        <span title="Deelnemer"   class="vrijwilliger-icon" v-if="item.statuut === 'deelnemer' && item.Archief !== true"><i class="fas fa-user-alt"></i></span>
+                        <span v-if="item.jarig === true">
+                            <br /><i class="fas fa-crown"></i>
+                            <span v-if="item.daysBirthday > 0">Jarig binnen {{item.daysBirthday}} dagen.</span>
+                            <span v-else>Vandaag jarig!</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <div id="singleVrijwilliger" style="display: none">
+            <div class="tabs is-centered is-boxed">
+                <ul>
+                    <li class="is-active"><a href="#tab-vrijwilliger-user" title="Info"><i class="fas fa-user-tag"></i></a></li>
+                    <li><a href="#tab-vrijwilliger-events" title="Activiteiten" onclick="XeApp.Vrijwilligers.loadSingleVrijwilligerEvents()"><i class="fas fa-calendar-alt"></i></a></li>
+                    <li><a href="#tab-vrijwilliger-doorverwijzing" title="Dooverwijzingen" onclick="XeApp.Vrijwilligers.loadSingleVrijwilligerDoorverwijzingen()"><i class="fas fa-random"></i></a></li>
+                    <li><a href="#tab-vrijwilliger-foto" title="Foto bewerken"><i class="fas fa-image"></i></a></li>
+                    <li v-if="person.Archief !== true"><a href="#tab-vrijwilliger-edit" title="Persoon bewerken"><i class="fas fa-user-edit"></i></a></li>
+                    <li><a href="#tab-vrijwilliger-archive" title="Archiveer" onclick="XeApp.Vrijwilligers.loadArchiveVrijwilliger()"><i class="fas fa-archive"></i></a> </li>
+                    <li><a title="sluiten" onclick="XeApp.Vrijwilligers.closeSingleVrijwillger()"><i class="fas fa-times-circle"></i></a></li>
+                </ul>
+            </div>
+            <h3 class="title">{{person.VolledigeNaam}}</h3>
+            <p v-if="person.Archief === true"  class="content">
+                <b>{{person.VolledigeNaam}} werd gearchiveerd met als eind datum {{person.Einddatum | formatDate}}</b>
+            </p>
+            <div class="tab-content" id="tab-vrijwilliger-user">
+                <div class="columns">
+                    <div class="column is-one-quarter">
+                        <p>
+                            <img v-if="typeof person.profielfoto !== 'undefined'" :src="person.profielfoto" width="100%" />
+                            <img v-else src="https://www.samenlevingsopbouw.be/images/sov/corona_samenlevingsopbouw_-_website.png" width="100%" />
+                        </p>
+
+                    </div>
+                    <div class="column">
+                        <p>
+                            <b>{{person.statuut}}</b>
+                            <br />
+                            <b><i class="fas fa-birthday-cake"></i></b>
+                            {{person.Geboortedatum | formatDate}}
+                            <br />
+                            <a :href="'tel:'+person.telefoon"><b><i class="fas fa-phone"></i></b> {{person.telefoon}}</a><br />
+                            <a :href="'tel:'+person.Gsm"><i class="fas fa-phone"></i> {{person.Gsm}}</a><br />
+                            <a :href="'mailto:'+person.Mail"><b><i class="fas fa-mail-bulk"></i></b> {{person.Mail}}</a>
+                        </p>
+                    </div>
+                    <div class="column">
+                        <p>
+                            <b><i class="fas fa-street-view"></i></b>
+                            <a target="_blank" :href="'https://maps.google.com/?q='+person.AdresStraatEnNummer+' '+person.AdresPostcode+' '+person.AdresGemeente">{{person.AdresStraatEnNummer}}
+                            <br />
+                            {{person.AdresPostcode}} {{person.AdresGemeente}}
+                            <br />
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <h4 class="title is-4">Bestanden</h4>
+                        <p>
+                            Hieronder kan je bestanden toevoegen die gekoppeld zijn aan de betrokken persoon.
+                        </p>
+                        <ul class="list">
+                            <li v-for="bijlage in bijlagen" class="list-item">
+                                <a class="open-bijlage" :href="bijlage.ServerRelativeUrl" target="_blank">{{bijlage.FileName}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-vrijwilliger-events">
+                <p>Hieronder vind je een overzicht van alle activiteiten waaraan {{person.VolledigeNaam}} het laatste jaar deelnam.</p>
+
+                <ul class="item-list">
+                    <li v-for="event in events">
+                        <a href="#" class="edit-activiteit" :data-id="event.Id">{{event.datum | formatDate}} - {{event.Title}}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content" id="tab-vrijwilliger-doorverwijzing">
+                <p class="content">
+                    Als je een vrijwilliger hebt doorverwezen naar een andere organisatie kan je dat hieronder aangeven.
+                    Je krijgt ook een overzicht van de reeds opgegeven verwijzingen te zien.
+                </p>
+
+                <div class="columns">
+                    <div class="column">
+                        <form id="dv-vrijwilligers">
+                            <label for="datum">Datum</label>
+                            <input type="date" class="input" name="datum" id="dv-datum" />
+                            <label>Omschrijving</label>
+                            <textarea name="omschrijving" id="dv-omschrijving"></textarea>
+                            <label for="zin">Zin</label>
+                            <select id="dv-zin" name="zin" style="height: 40px;">
+                                <option></option>
+                            </select>
+                            <label for="organisatie">Organisatie</label>
+                            <select id="dv-organisatie" name="organisatie" class="select2" style="height: 40px;">
+                                <option></option>
+                            </select>
+                            <label for="partner">Partner</label>
+                            <select id="dv-partner" name="partner" class="select2" style="height: 40px;">
+                                <option></option>
+                            </select>
+                            <label for="project">Project</label>
+                            <select id="dv-project" name="project" class="select2" style="height: 40px;">
+                                <option></option>
+                            </select>
+                            <label>Locatie</label>
+                            <select id="dv-locatie" name="locatie" class="select2" style="height: 40px;">
+                                <option></option>
+                            </select>
+                            <input id="dv-person" type="hidden" name="person-id" :value="person.Id" />
+                            <div id="doorverwijzingVrijwilligerButton" class="button is-large is-primary">Toevoegen</div>
+                        </form>
+                    </div>
+                    <div class="column">
+                        <table class="table is-bordered">
+                            <thead>
+                            <tr>
+                                <th>Datum</th>
+                                <th>Organisatie</th>
+                                <th>Zin</th>
+                                <th>Partner</th>
+                                <th>Omschrijving</th>
+                                <th>Project</th>
+                                <th>Locatie</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="item in doorverwijzingen">
+                                <td>{{item.datum | formatDate}}</td>
+                                <td>{{item.organisatie.Title}}</td>
+                                <td>{{item.zin}}</td>
+                                <td>{{item.partner.Title}}</td>
+                                <td>{{item.Title}}</td>
+                                <td>{{item.project.TitelLang}}</td>
+                                <td>{{item.locatie.TitelLang}}</td>
+                                <td><a class="deleteDoorverwijzing" href="#" :data-id="item.Id">Verwijder</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-vrijwilliger-foto">
+                <div class="columns" v-if="person.Archief !== true">
+                    <div class="column is-one-quarter">
+                        <p>Selecteer een bestand om een profielfoto in te stellen voor deze persoon.</p>
+                        <p>
+                            <img :src="person.profielfoto" height="150px" width="150px" />
+                        </p>
+                    </div>
+                    <div>
+                        <input id="getFile" type="file"/><br />
+                        <input id="addFileButton" type="button" value="Upload" onclick="uploadFile()"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-vrijwilliger-edit">
+                <div class="columns">
+                    <div class="column is-one-third">
+                        <p class="content">
+                            De contactpersoon bij SAS (verantwoordelijke) is het eerste aanspreekpunt.<br />
+                            <b>ALLE medewerkers</b> en vrijwilligers van Samenlevingsopbouw zijn gebonden aan <b>discretieplicht</b>.<br /><br />
+                            Vul in dit formulier <u>nooit</u> gevoelige informatie in. Hoort hier nooit thuis: info over gezondheid, persoonlijke situatie, geaardheid, religie, afkomst, overtuiging, etc.<br />
+                            Hou er rekening mee dat deze gegevens door andere medewerkers van Samenlevingsopbouw gelezen zouden kunnen worden.<br />
+                            Elke vrijwilliger en deelnemer mag de eigen gegevens inkijken en laten wijzigen.<br />
+                        </p>
+                    </div>
+                    <div class="column">
+                        <form id="update-vrijwilligers">
+                            <label for="voornaam">Statuut *</label>
+                            <select id="person-het-statuut" v-model="person.statuut">
+                                <option value="deelnemer">Deelnemer</option>
+                                <option value="vrijwilliger">Vrijwilliger</option>
+                            </select>
+                            <label for="voornaam">Voornaam *</label>
+                            <input type="text" class="input" id="person-voornaam" :value="person.Title" />
+                            <label for="achternaam">Achternaam *</label>
+                            <input type="text" class="input" id="person-achternaam" :value="person.Achternaam"  />
+                            <label for="person-geslacht">Geslacht</label>
+                            <select id="person-geslacht" class="input"  v-model="person.geslacht">
+                                <option value="vrouw">Vrouw</option>
+                                <option value="man">Man</option>
+                                <option value="x">X</option>
+                            </select>
+                            <label for="telefoon">Telefoon</label>
+                            <input type="text" class="input" id="person-telefoon" :value="person.telefoon" />
+                            <label for="Gsm">Telefoon (gsm)</label>
+                            <input type="text" class="input" id="person-gsm" :value="person.Gsm" />
+                            <label for="email">Email</label>
+                            <input type="text" class="input" id="person-mail"  :value="person.Mail" />
+                            <label for="AdresStraatEnNummer">Straat & nr</label>
+                            <input type="text" class="input" id="person-AdresStraatEnNummer"  :value="person.AdresStraatEnNummer" />
+                            <label for="Postcode">Postcode</label>
+                            <input type="text" class="input" id="person-postcode"   :value="person.AdresPostcode" />
+                            <label for="Postcode">Gemeente</label>
+                            <input type="text" class="input" id="person-gemeente"   :value="person.AdresGemeente" />
+                            <label for="Geboortedatum">Geboortedatum</label>
+                            <input type="date" class="input" id="person-geboortedatum"   :value="person.Geboortedatum | formatDateInput" />
+                            <label for="person-contactvoorkeur">Contactvoorkeur</label>
+                            <select id="person-contactvoorkeur" v-model="person.contactVoorkeur">
+                            </select>
+                            <label for="person-nieuwsbrief" >Nieuwsbrief</label>
+                            <select id="person-nieuwsbrief" v-model="person.Inschrijven_x0020_maandkalender">
+                                <option value="false">Nee</option>
+                                <option value="true">Ja</option>
+                            </select>
+                            <label for="person-nieuwevrijwilliger" >Nieuwe vrijwilliger</label>
+                            <select id="person-nieuwevrijwilliger" v-model="person.ContractMailSturen">
+                                <option value="false">Nee</option>
+                                <option value="true">Ja</option>
+                            </select>
+                            <label for="person-migratieachtergrond" >Migratieachtergrond</label>
+                            <select id="person-migratieachtergrond" v-model="person.migratie_x002d_achtergrond">
+                                <option value="false">Nee</option>
+                                <option value="true">Ja</option>
+                            </select>
+                            <label>
+                                Werkschema
+                            </label>
+                            <textarea id="person-werkschema" v-model="person.Werkschema"></textarea>
+                            <label>
+                                Opmerkingen (Opgelet: Geen gevoelige of persoonlijke info!!)
+                            </label>
+                            <textarea id="person-opmerkingen" v-model="person.opmerkingen"></textarea>
+                            <label for="person-locatie">Locatie</label>
+                            <select id="person-locatie" class="select2"><option></option></select>
+                            <label for="person-project">Project</label>
+                            <select id="person-project" class="select2" multiple><option></option></select>
+                            <label for="person-contact">Contactpersoon *</label>
+                            <select id="person-contact" class="select2"><option></option></select>
+                            <input type="hidden" id="person-id" :value="person.Id" />
+                            <div id="updateVrijwilligerButton" class="button is-large is-primary">Opslaan</div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-content" id="tab-vrijwilliger-archive">
+                <p class="content">Hier kan je een vrijwilliger 'archiveren'. We behouden de gegevens (registratie e.d.), maar filteren ze in veel weergaven weg.
+                    <br />
+                    Je kan hier ook een gearchiveerde vrijwilliger opnieuw activeren.
+                    <br />
+                    Denk steeds na: ben ik de enige die deze vrijwilliger kent? Is die nog bij een andere locatie, project, activiteit dan de mijne actief? Misschien kan je dan beter nog even niet archiveren... maar wel aangeven dat die niet bij jouw locatie, project, activiteit is.
+                </p>
+
+                <p v-if="person.Archief === true"  class="content">
+                    <b>{{person.VolledigeNaam}} werd gearchiveerd met als eind datum {{person.Einddatum | formatDate}}</b>
+                </p>
+                <p  class="content">
+                <form id="archive-vrijwilligers" v-if="person.Archief !== true">
+                    <label for="eind-datum">Eind datum</label>
+                    <input type="date" class="input" name="eind-datum" />
+                    <label for="archief-reden">Archief reden</label>
+                    <select id="archief-reden" name="archief-reden" class="select2" style="height: 40px;" multiple>
+                        <option></option>
+                    </select>
+                    <input type="hidden" name="person-id" :value="person.Id" />
+                    <div id="archiveVrijwilligerButton" class="button is-large is-primary">Archiveer</div>
+                </form>
+                <a href="#" v-if="person.Archief === true" class="button" id="activedVrijwilligerButton" :data-id="person.Id">
+                    Heractiveer {{person.VolledigeNaam}}
+                </a>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

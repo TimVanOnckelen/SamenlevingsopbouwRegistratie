@@ -1,4 +1,4 @@
-﻿.input, .select, input, select, .select2-container--default .select2-selection--single, .select2-container--default.select2-container--focus .select2-selection--multiple, input[type=password], input[type=text], input[type=file], input:not([type]), select, textarea, .sp-peoplepicker-topLevel, .sp-peoplepicker-topLevelDisabled, .sp-peoplepicker-autoFillContainer, .ms-inputBox, .select2-container--default .select2-selection--multiple {
+﻿.input:not([type='checkbox']), .select, input, select, .select2-container--default .select2-selection--single, .select2-container--default.select2-container--focus .select2-selection--multiple, input[type=password], input[type=text], input[type=file], input:not([type]), select, textarea, .sp-peoplepicker-topLevel, .sp-peoplepicker-topLevelDisabled, .sp-peoplepicker-autoFillContainer, .ms-inputBox, .select2-container--default .select2-selection--multiple {
     border: 1px solid #F6F9FC;
     border-color: #F6F9FC;
     box-shadow: inset 0 1px 2px rgba(10,10,10,.1);
@@ -8,17 +8,17 @@
     padding: 5px 5px;
     min-height: 40px;
 }
+#archive-vrijwilligers .select2-container--default .select2-selection--multiple,#doorverwijzing-vrijwilligers .select2-container--default .select2-selection--multiple{
+    height: 50px;
+}
 #app-container-main {
     padding:15px;
     font-family: Calibri;
 }
-#topMenu iframe{
-    display: block;
-    border:0px;
+#topMenu{
+    position: absolute;
+    top:0;
     width: 100%;
-    margin: auto;
-    height: 45px;
-    overflow: hidden;
 }
 #contentRow {
     background-color: #F6F9FC;
@@ -30,8 +30,9 @@
     color: #363636;
     border: 1px solid #EFEFEF;
     border-radius: 15px;
+    margin-top: 15px;
 }
-#registratie-container {
+#registratie-container, aside.menu,.addContainer{
     position: relative;
     background-color: #fff;
     border-right: 1px solid #F6F9FC;
@@ -42,7 +43,7 @@
     box-shadow: 11px 17px 15px -12px rgba(199,191,199,1);
     transition: ease all 1s;
 }
-#registratie-container.loading:before {
+#registratie-container.loading:before,.addContainer.loading:before {
     display: block;
     position: absolute;
     border-radius: 15px;
@@ -54,7 +55,7 @@
     bottom: 0;
     left: 0;
 }
-    #registratie-container .title {
+    #registratie-container .title, .addContainer .title {
         display: block;
         background-color: #8b2039;
         color: #fff;
@@ -76,7 +77,7 @@
     padding-left:50px;
 }
 #header-image {
-    background: url(https://samenlevingsopbouw-antwerpenstad.be/wp-content/uploads/sites/5/2016/11/wb-beterbuurtwerk-82.png);
+    background: url(logo.png);
     background-size: cover;
     background-position: center;
 }
@@ -91,6 +92,7 @@
     margin-bottom: 25px;
     color: #fff;
     background-color: #006d87;
+    z-index: 0;
 }   
     .navbar a {
         color: #fff;
@@ -99,38 +101,50 @@
 #contentBox {
     margin: 0;
 }
-#momenten-overview {
+#momenten-overview,#momenten-filters,.appFilters {
+    max-width: 100%;
+}
+#momenten-overview,#partners-overview ul, .appTable ul {
     max-height: 100%;
     height: 1080px;
     position: relative;
     overflow-y: scroll;
 }
-    #momenten-overview::-webkit-scrollbar {
+.appTable,#partners-overview {
+    position: relative;
+}
+    #momenten-overview::-webkit-scrollbar, #partners-overview ul::-webkit-scrollbar,.appTable ul::-webkit-scrollbar {
         width: 5px;
         background-color: #F6F9FC;
         border-radius: 2.5px;
     }
-    #momenten-overview::-webkit-scrollbar-thumb {
+    #momenten-overview::-webkit-scrollbar-thumb,#partners-overview ul::-webkit-scrollbar-thumb,.appTable ul::-webkit-scrollbar-thumb {
         background-color: #8b2039;
     }
    
-    #momenten-overview ul li i{
+    #momenten-overview ul li i, .appTable ul.item-list li i{
        margin: 5px;
        cursor: pointer;
     }
-.momenten-filters {
-    background-color: #F6F9FC;
+.appTable ul.item-list a:hover {
+    text-decoration: none;
+    color:#8b2039;
+}
+.momenten-filters,.appFilters {
     padding: 18px;
     border-radius: 15px;
 }
-    #momenten-overview ul li {
+    #momenten-overview ul li, .appTable ul.item-list li {
         margin: 0px;
         padding: 15px;
         background-color: #F6F9FC;
         margin: 0px;
         border-radius: 0px;
+        overflow: auto;
+        position: relative;
+        display: block;
     }
-        #momenten-overview ul li:nth-child(2n+1) {
+        #momenten-overview ul li:nth-child(2n+1), .appTable ul li:nth-child(2n+1) {
             background-color: #fff;
             
         }
@@ -143,3 +157,191 @@
         input, select {
             overflow: hidden;
         }
+
+        .woordenboek-data {
+            padding: 50px;
+        }
+
+        #woordenboek ul.menu-list {
+                max-height: 500px;
+                /* overflow: scroll; */
+                overflow-x: hidden;
+                overflow-y: scroll;
+        }
+        #zieOok ul {
+            list-style: none;
+        }
+        #zieOok ul li {
+            display: inline-block;
+            margin: 10px;
+            padding:15px;
+            border-radius: 10px;
+            background-color: #00C4A7;
+            color: #fff;
+        }
+        .woordenboek-data h2 {
+            font-size:2em;
+        }
+.tab-content {
+    display: none;
+}
+@media only screen and (max-width: 980px) {
+    #DeltaPlaceHolderMain {
+        width: 750px;
+        margin: auto;
+    }
+    #momenten-overview, .appTable {
+        margin: auto;
+        height: auto;
+    }
+    #registratie-info {
+        padding-left: 0px;
+        margin-top: 20px;
+    }
+}
+@media only screen and (max-width: 769px) {
+    #registratie-container,.addContainer {
+        display: none;
+    }
+    #triggerMobileReg {
+        margin-left: auto;
+        display: block;
+        margin-right: auto;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    #DeltaPlaceHolderMain {
+        width: 640px;
+        margin: auto;
+    }
+}
+@media only screen and (max-width: 650px) {
+    #DeltaPlaceHolderMain {
+        width: 540px;
+        margin: 0;
+    }
+    #topMenu {
+        display: none;
+    }
+
+}
+@media only screen and (max-width: 550px) {
+    #DeltaPlaceHolderMain {
+        width: 450px;
+        margin: 0;
+    }
+
+}
+@media only screen and (max-width: 450px) {
+    #DeltaPlaceHolderMain {
+        width: 360px;
+        margin: 0;
+    }
+
+}
+@media only screen and (max-width: 360px) {
+    #DeltaPlaceHolderMain {
+        width: 340px;
+        margin: 0;
+    }
+
+}
+
+        /* Sharepoint fixed */
+        #s4-titlerow {
+            display: none;
+            height: 0;
+        }
+        #titleAreaBox {
+            display: none;
+        }
+
+        .vrijwilliger-icon {
+            position: absolute;
+            top: 10px;
+            font-size: 2em;
+            right: 16px;
+        }
+
+        .loadingOverflow {
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            text-align: center;
+            font-size: 4em;
+            color: #fff;
+            display: none;
+        }
+
+.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #8B2039; border-radius: 10px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 12px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "Archief";
+    padding-left: 10px;
+    background-color: #8B2039; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "Archief";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #8B2039; border-radius: 10px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+#archief-filter-container {
+    position: absolute;
+    right: 5px;
+    z-index: 10;
+    top: 0px;
+}
+
+#partner-checkbox-function,#vrijwilligers-checkbox-function {
+    margin-left: 10px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    z-index: 200;
+    font-size: 2em;
+    display: none;
+}
+#vrijwilligers-checkbox-function {
+    right: 110px;
+}
+#partner-checkbox-function a,#vrijwilligers-checkbox-function a {
+    color:#8B2039;
+}

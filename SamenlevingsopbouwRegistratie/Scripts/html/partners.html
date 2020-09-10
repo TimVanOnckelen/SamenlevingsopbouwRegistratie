@@ -1,0 +1,96 @@
+<div class="columns" id="partners-page">
+    <div class="column">
+        <section>
+            <div class="appFilters">
+                <h2 class="title is-3">Overzicht Partners</h2>
+                <div class="columns">
+                    <div class="column">
+                        <label for="partners-filter-organisatie">Organisatie</label>
+                        <select id="partners-filter-organisatie" class="filter-partners select2"><option></option></select>
+                    </div>
+                    <div class="column">
+                        <label for="partners-filter-contact">Contact</label>
+                        <select id="partners-filter-contact" class="filter-partners select2"><option></option></select>
+                 </div>
+                </div>
+                <div>
+                    <div class="field">
+                        <input type="text" value="" placeholder="Type een naam om te zoeken" class="input filter-partners" id="partners-filter-search" />
+                    </div>
+                    <a class="button" href="#" id="addNewPartner">Nieuwe partner</a>
+                    <a class="button" href="#" id="addNewOrganisation">Nieuwe Organisatie</a>
+                </div>
+            </div>
+        </section>
+        <div class="loadingOverflow">Laden...</div>
+        <section id="partners-overview" class="appTable">
+            <input type="checkbox" id="check-all-partners" style="display: inline-block; width: 25px; height: 25px;"> <label for="check-all-partners">Selecteer alle partners</label>
+            <div id="partner-checkbox-function">
+                <a href="#" id="bulkMailPartners"><i class="fas fa-mail-bulk"></i></a>
+                <a href="#" id="bulkSmsPartners"><i class="fas fa-phone"></i></a>
+            </div>
+            <ul class="item-list">
+                <li v-if="!recordViewEntries.length">Geen resultaten.</li>
+                <li v-for="item in items">
+                    <input type="checkbox" class="partner-checkbox" :data-mail="item.Mailadres" :data-phone="item.Telefoon" style="display: inline-block; width: 25px; height: 25px;" />
+                    <a href="#" class="is-active openPartner" :data-id="item.Id" style="display: inline-block">
+                        <b>{{item.VolledigeNaam}}</b>
+                        <br />
+                        {{item.Telefoon}}<br />
+                        {{item.Mailadres}}
+                        <span class="vrijwilliger-icon" style="font-size:1em" v-if="item.Organisatie"><b>{{item.Organisatie.Title}}</b></span>
+                    </a>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <div id="singlePartner" style="display: none">
+            <div class="tabs is-centered is-boxed">
+                <ul>
+                    <li class="is-active"><a href="#tab-partner-user" title="Info"><i class="fas fa-user-tag"></i></a></li>
+                    <li><a href="#tab-partner-edit" title="Persoon bewerken"><i class="fas fa-user-edit"></i></a></li>
+                    <li><a title="sluiten" onclick="XeApp.Partners.closeSinglePartner()"><i class="fas fa-times-circle"></i></a></li>
+                </ul>
+            </div>
+
+            <h3 class="title">{{person.VolledigeNaam}}</h3>
+            <div class="tab-content" id="tab-partner-user">
+                <div class="columns">
+                    <div class="column">
+                        <h3 class="title">{{person.Organisatie.Title}}</h3>
+                        <p>
+                            <b>Email:</b> <a :href="'mailto:'+person.Mailadres">{{person.Mailadres}}</a>
+                            <br />
+                            <b>Telefoon:</b> <a :href="'tel:'+person.Telefoon">{{person.Telefoon}}</a>
+                            <br />
+                            <b>Contact Sas:</b> {{person.ContactSAS.Title}}
+                            <br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-partner-edit">
+                <form id="update-partner">
+                    <label for="partner-voornaam">Voornaam *</label>
+                    <input type="text" class="input" id="partner-voornaam" :value="person.Title" />
+                    <label for="partner-achternaam">Achternaam *</label>
+                    <input type="text" class="input" id="partner-achternaam" :value="person.Achternaam"  />
+                    <label for="partner-telefoon">Telefoon</label>
+                    <input type="text" class="input" id="partner-telefoon" :value="person.Telefoon"  />
+                    <label for="partner-mail">Email</label>
+                    <input type="text" class="input" id="partner-mail" :value="person.Mailadres"  />
+                    <label for="partner-organisatie">Organisatie *</label>
+                    <select id="partner-organisatie" class="select2"><option></option></select>
+                    <label for="partner-contact">Contactpersoon *</label>
+                    <select id="partner-contact" class="select2"><option></option></select>
+                    <input type="hidden" id="partner-id" :value="person.Id" />
+                    <div id="updatePartnerButton" class="button is-large is-primary">Opslaan</div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>

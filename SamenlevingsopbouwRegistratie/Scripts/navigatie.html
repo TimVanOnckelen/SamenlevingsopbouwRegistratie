@@ -1,0 +1,342 @@
+
+    <style>
+        body
+        div.niveau3 ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            display:block;
+        }
+
+        div.niveau3 ul li {
+            color: #FFF;
+            padding: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            float:left;
+            background-color: #006d87;
+            width: auto;
+            display:block;
+        }
+
+
+        div.niveau3 ul li a {
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        div.niveau3 li:hover {
+
+        }
+
+        div.niveau3 ul li ul {
+            display:none;
+        }
+
+        div.niveau3 ul li:hover ul {
+            display: list-item;
+            position: absolute;
+            margin-top: 30px;
+            margin-left: 1%; <!-- -10px -->
+        }
+
+        div.niveau3 ul li:hover ul li {
+            float:none;
+        }
+
+        div.niveau3 ul li ul li:hover {
+            float:none;
+
+        }
+
+        li.more:after {
+            content: "\2B9F";
+            float: right;
+            margin-right: 0px;
+        }
+
+        {
+            font-family: Calibri, Helvetica, sans-serif;
+            margin: 0;
+        }
+
+        .niveau1 {
+            overflow: hidden;
+            background-color: #8b2039;
+
+            margin-bottom: 10px;
+        }
+
+        .niveau1 a {
+            float: left;
+            font-size: 16px;
+            color: #ffffff;
+            text-align: align="left">;
+            padding: 3px 16px;
+            text-decoration: none;
+        }
+
+        .niveau1 a:hover, .niveau2:hover .niveau2btn {
+            background-color: #006d87;
+        }
+
+        .niveau2 {
+            float: left;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        .niveau2 .niveau2btn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color:  #ffffff;
+            padding: 10px 16px;
+            background-color: #8b2039;
+            font-family: Calibri;
+            text-align: align="left">;
+            margin: 0;
+        }
+
+        .niveau2-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            background-color: #006d87;
+            padding: 15px 8px;
+            width: 100%;
+            z-index: 11;
+        }
+
+        .niveau2-content a {
+            float: left;
+            background-color: #006d87;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .niveau2-content a:hover {
+            float: left;
+            background-color:#009fbb;
+            color: #ffffff;
+        }
+
+        .niveau2:hover .niveau2-content {
+            display: block;
+        }
+        .niveau3 {
+            z-index: 100;
+        }
+    </style>
+
+    <div class="niveau1">
+        <div class="niveau2">
+            <button class="niveau2btn"><a href="/sites/sas/SitePages/Introductiepagina.aspx">Home (aka kleurblokjes)</a><i class="fa fa-caret-down"></i></button>
+            <div class="niveau2-content">
+                <div class="niveau3"> <!-- Arbeid -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/Arbeid">Arbeid</a>
+                            <ul>
+                                <li><a href="/sites/sas/Arbeid/Interne%20Documentatie/Forms/Verslagen.aspx">Verslagen</a></li>
+                </div>
+                <div class="niveau3"> <!-- AIA -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/Arminarm">AIA</a>
+                            <ul>
+                </div>
+                <div class="niveau3"> <!-- BT -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/Beleidsteam">BT</a>
+                            <ul>
+                                <li><a href="/sites/sas/Beleidsteam/Lists/Discutiebord/Hoofdtekst.aspx">Discussiebord</a></li>
+                                <li><a href="/sites/sas/INTERN%20OVERLEGPERSONEELSDAGENVZW/Forms/Verslagen%20BT.aspx">Verslagen</a></li>
+                </div>
+                <div class="niveau3"> <!-- BG -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/Budgetgidsen">BG</a>
+                            <ul>
+                                <li><a href="/sites/sas/Basisvoorziening/BIB%20BG%20%20BASISIVOORZIENING">BIB BG & MD</a></li>
+                                <li><a href="/sites/sas/Budgetgidsen/project/Forms/Verslagen.aspx">Verslagen</a></li>
+                </div>
+                <div class="niveau3"> <!-- DU BU -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/BuurzaamDuurzaam">Du Bu</a>
+                            <ul>
+                                <li><a href="/sites/sas/afstemmingsoverleg">Buurtwerkoverleg</a></li>
+                                <li><a href="/sites/sas/BuurzaamDuurzaam/Activiteiten/Forms/Fiches.aspx">Fiches</a></li>
+                                <li><a href="/sites/sas/BuurzaamDuurzaam/Activiteiten/Forms/Verslagen.aspx">Verslagen</a></li>
+                </div>
+                <div class="niveau3"> <!-- Facility -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/sos">Facility</a>
+                            <ul>
+                </div>
+                <div class="niveau3"> <!-- Financiën & personeel -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/financies_personeel">Financiën</a>
+                            <ul>
+                                <li><a href="https://apps.powerapps.com/play/974a8f89-1250-4432-880f-1dbd8f38faa9?tenantId=547a9629-596e-44c5-9e94-aae9ab1ec582" target="_blank">Betalingen bankkaarten SAS</a></li>
+                                <li><a href="/sites/sas/financies_personeel/Dashboard?viewpath=%2Fsites%2Fsas%2Ffinancies_personeel%2FDashboard">Dashboard</a></li>
+                                <li><a href="/sites/sas/Secretariaat/Kasboeken/Forms/Alles%20zonder%20mappen.aspx">Kasboeken</a></li>
+                                <li><a href="https://samenlevingsopbouw.sharepoint.com/sites/sas/Lists/inDienst/AllItems.aspx">inDienst</a></li>
+                                <li><a href="/sites/sas/financies_personeel/PERSONEELSBEGROTING?viewpath=%2Fsites%2Fsas%2Ffinancies_personeel%2FPERSONEELSBEGROTING">Personeelsbegroting</a></li>
+                                <li><a href="/sites/sas/financies_personeel/Financile%20inspectie">Revisor / inspectie</a></li>
+                                <li><a href="/sites/sas/financies_personeel/Verantwoording%20subsidies?viewpath=%2Fsites%2Fsas%2Ffinancies_personeel%2FVerantwoording%20subsidies">Verantwoording subsidies (afrekeningen)</a></li>
+                </div>
+                <div class="niveau3"> <!-- Geïnt. basisvrz -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/Basisvoorziening">Geïnt. basisvrz</a>
+                            <ul>
+                                <li><a href="/sites/sas/Basisvoorziening/BIB%20BG%20%20BASISIVOORZIENING">BIB BG & MD</a></li>
+                                <li><a href="/sites/sas/Basisvoorziening/BIB/Forms/Verslagen%20en%20agendas.aspx">TEAM - verslagen en agenda's</a></li>
+                </div>
+
+                <div class="niveau3"> <!-- IDPBW -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/idpbw">IDPBW</a>
+                            <ul>
+                                <li><a href="/sites/sas/idpbw/Verslagen%20en%20uitnodigingen">Verslagen</a></li>
+                </div>
+
+                <div class="niveau3"> <!-- IST -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/ist">IST</a>
+                            <ul>
+                </div>
+
+                <div class="niveau3"> <!-- LB --> <!-- WORDT DIT NOG GEBRUIKT??? IS NOG EEN PROJECT??? -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/MoskeeënenIslam">LB</a>
+                            <ul>
+                </div>
+                <div class="niveau3"> <!-- secretariaat -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/Secretariaat">SECR</a>
+                            <ul>
+                                <li><a href="https://web.powerapps.com/apps/d74dd580-b4a8-4f6b-88fd-15f80498781e">afwezigheden</a></li>
+                                <li><a href="/sites/sas/Secretariaat/_layouts/15/WopiFrame.aspx?sourcedoc=%7b27DF304E-69D8-4EB6-A23F-784E50A3531D%7d&file=Draaiboek%20secretariaat.docx&action=default&IsList=1&ListId=%7b6436B75D-638C-4B10-8687-2FC8E5DD3E76%7d&ListItemId=27736">draaiboek</a></li>
+                                <li><a href="/sites/sas/Secretariaat/Kasboeken/Forms/AllItems.aspx?RootFolder=/sites/sas/Secretariaat/Kasboeken/Kasboek%20secretariaat&FolderCTID=0x012000CDD2A644C6F2A34B9C6637146048D64B">kasboek Gasstraat</a></li>
+                                <li><a href="https://apps.powerapps.com/play/1a6d9edf-6a29-4782-9375-55bba469b035?tenantId=547a9629-596e-44c5-9e94-aae9ab1ec582" target="_blank">verplaatsingskosten</a></li>
+                                <li><a href="/sites/sas/Secretariaat/Interne%20Documentatie/Forms/register%20vrijwilligers.aspx">vrijwilligersregister</a></li>
+                                <li><a href="https://apps.powerapps.com/play/9bcb6361-8676-4f3d-a8e9-56c478a2bd27?tenantId=547a9629-596e-44c5-9e94-aae9ab1ec582" target="_blank">hardware - computer/gsm terugbrengen</a></li>
+                </div>
+                <div class="niveau3"> <!-- SOS -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/sos">SOS</a>
+                            <ul>
+                                <li><a href="/sites/sas/sos/vrijwilligersvergoeding">vrijwilligersvergoeding</a></li>
+                </div>
+                <div class="niveau3"> <!-- Taal -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/Taal">Taal</a>
+                            <ul>
+                                <li><a href="/sites/sas/Taal/taal%20en%20meer">Ieders taal telt</a></li>
+                                <li><a href="/sites/sas/Taal/Oefenkansen">Oefenkansen</a></li>
+                                <li><a href="/sites/sas/Taal/Interne%20Documentatie/Forms/Verslagen.aspx">Verslagen</a></li>
+                </div>
+                <div class="niveau3"> <!-- Wonen -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/Wonen">Wonen</a>
+                            <ul>
+                                <li><a href="/sites/sas/Wonen/ANTWERPS%20PLATFORM%20WONEN">APW</a></li>
+                                <li><a href="/sites/sas/Wonen/COLLECTIEF%20GOED">CG</a></li>
+                                <li><a href="/sites/sas/Wonen/TEAM%20%20ALGEMEEN">TEAM</a></li>
+                                <li><a href="/sites/sas/Wonen/TEAM%20%20ALGEMEEN/Forms/Verslagen.aspx">Verslagen</a></li>
+                                <li><a href="/sites/sas/Wonen/TIJDELIJKE%20BEZETTING">WMK</a></li>
+                                <li><a href="/sites/sas/Wonen/Lists/WMKhuurders">WMK - huurders</a></li>
+                                <li><a href="/sites/sas/Wonen/Lists/WMKpanden">WMK - panden</a></li>
+                </div>
+            </div>
+        </div>
+        <div class="niveau2">
+            <button class="niveau2btn">Organisatie<i class="fa fa-caret-down"></i></button>
+            <div class="niveau2-content">
+                <div class="niveau3"> <!-- aankondigingen -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/Lists/Aankondigingen">Aankondigingen</a>
+                            <ul>
+                </div>
+                <div class="niveau3"> <!-- administratie -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/SitePages/administratie.aspx">Administratie</a>
+                            <ul>
+                                <li><a target="_blank" rel="noopener noreferrer" href="https://apps.powerapps.com/play/8e056aea-26c3-473b-a57b-11be2ff1cbfd?tenantId=547a9629-596e-44c5-9e94-aae9ab1ec582">interne procedures</a></li>
+                                <li><a href="/sites/sas/medewerkersbeleid personeel/2015-03-18 arbeidsreglement.docx">arbeidsreglement</a></li>
+                                <li><a href="/sites/sas/Lists/afwezigheden%20werktijdbe/">geplande afwezigheden via werktijd.be</a></li>
+                                <li><a target="_blank" rel="noopener noreferrer" href="https://apps.powerapps.com/play/db6d18f4-592d-4635-90a3-e9033ba9c5cf?tenantId=547a9629-596e-44c5-9e94-aae9ab1ec582">mijn vormingen</a></li>
+                                <li><a target="_blank" rel="noopener noreferrer" href="https://werktijd.be">werktijd.be</a></li>
+                </div>
+                <div class="niveau3"> <!-- discriminatie aanpakken -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/SitePages/registratie%20discriminatie.aspx">Discriminatie aanpakken</a>
+                            <ul>
+                </div>
+                <div class="niveau3"> <!-- structuur -->
+                    <ul>
+                        <li class="more"><a href="">structuur</a>
+                            <ul>
+                                <li><a href="/sites/sas/MEDEWERKERSBELEID PERSONEEL/organogram organisatie sas.pdf">organogram</a></li>
+                                <li><a href="/sites/sas/MEDEWERKERSBELEID PERSONEEL/wie is wie in Samenlevingsopbouw Antwerpen stad.pdf">wie is wie</a></li>
+                </div>
+                <div class="niveau3"> <!-- uitleendienst -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/SitePages/uitleen.aspx">Uitleendienst</a>
+                            <ul>
+                </div>
+                <div class="niveau3"> <!-- vrijwilligers -->
+                    <ul>
+                        <li class="more"><a href="/sites/sas/SitePages/documenten-ivm-vrijwilligers.aspx">Vrijwilligers</a>
+                            <ul>
+                                <li><a href="https://web.powerapps.com/webplayer/app?appId=/providers/Microsoft.PowerApps/apps/762407b6-2aa4-47c7-9fbf-214e2cd9b4b0">app</a></li>
+                                <li><a href="/sites/sas/MEDEWERKERSBELEID WEK VRIJWILLIGERS STAGIAIRS/Forms/VrijwilligersAanvragen.aspx">aanvraagformulieren</a></li>
+                                <li><a href="/sites/sas/MEDEWERKERSBELEID WEK VRIJWILLIGERS STAGIAIRS/Forms/Vrijwilligers Officile documenten.aspx">officiële documenten</a></li>
+                </div>
+            </div>
+        </div>
+
+
+        <!--	<div class="niveau2">
+                <button class="niveau2btn">Registratie (oud - excel)<i class="fa fa-caret-down"></i></button>
+                <div class="niveau2-content">
+                    <a href="/sites/sas/Interne helpdesk/FAQ registratie op Sharepoint.docx">FAQ registratie op Sharepoint</a>
+                    <a href="/sites/sas/Secretariaat/Registratie/Forms/AllItems.aspx?viewpath=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie&id=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie%2FGEDEELD%20%2D%20invulbestanden%2Fregistratie%20Activeringsbeleid">Activeringsbeleid</a>
+                    <a href="/sites/sas/Secretariaat/Registratie/Forms/AllItems.aspx?viewpath=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie&id=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie%2FGEDEELD%20%2D%20invulbestanden%2Fregistratie%20Arm%20In%20Arm">Arm in arm</a>
+                    <a href="/sites/sas/Secretariaat/Registratie/GEDEELD%20-%20invulbestanden/registratie%20Budgetgidsen">Budgetgidsen</a>
+                    <a href="/sites/sas/Secretariaat/Registratie/Forms/AllItems.aspx?viewpath=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie&id=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie%2FGEDEELD%20%2D%20invulbestanden%2Fregistratie%20Buurzaam%20duurzaam">Buurzaam duurzaam</a>
+                    <a href="/sites/sas/Secretariaat/Registratie/Forms/AllItems.aspx?viewpath=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie&id=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie%2FGEDEELD%20%2D%20invulbestanden%2Fregistratie%20Ge%C3%AFntegreerde%20basisvrz">Geïnt. basisvrz</a>
+                    <a href="/sites/sas/Secretariaat/Registratie/Forms/AllItems.aspx?viewpath=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie&id=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie%2FGEDEELD%20%2D%20invulbestanden%2Fregistratie%20Ieders%20Stem%20Telt">Ieders stem telt</a>
+                    <a href="/sites/sas/Secretariaat/Registratie/Forms/AllItems.aspx?viewpath=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie&id=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie%2FGEDEELD%20%2D%20invulbestanden%2Fregistratie%20Levensbeschouwing">Levensbeschouwing</a>
+                    <a href="/sites/sas/Secretariaat/Registratie/GEDEELD%20-%20invulbestanden/registratie%20Samen%20Op%20Straat">Samen Op Straat</a>
+                    <a href="/sites/sas/Secretariaat/Registratie/GEDEELD%20-%20invulbestanden/registratie%20Taal">Taal</a>
+                    <a href="/sites/sas/Secretariaat/Registratie/Forms/AllItems.aspx?viewpath=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie&id=%2Fsites%2Fsas%2FSecretariaat%2FRegistratie%2FGEDEELD%20%2D%20invulbestanden%2Fregistratie%20Wonen">Wonen</a>
+                </div>
+            </div> -->
+        <div class="niveau2">
+            <button class="niveau2btn">Registratie<i class="fa fa-caret-down"></i></button>
+            <div class="niveau2-content">
+                <a href="">FAQ (op komst)</a>
+                <a href="/sites/sas/Secretariaat/rapportage%20registratie/">Rapportage</a>
+                <a href="https://samenlevingsopbouw-ccd30774de34ac.sharepoint.com/sites/sas/SamenlevingsopbouwAntwerpenRegistratie/Pages/Default.aspx">Activiteitenmomenten</a>
+                <a href="/sites/sas/SitePages/partners.aspx">Partners en organisaties</a>
+                <a href="/sites/sas/SitePages/documenten-ivm-vrijwilligers.aspx">Vrijwilligers, deelnemers en doorverwijzingen</a>
+            </div>
+        </div>
+        <div class="niveau2">
+            <button class="niveau2btn"><script>
+                function openDialog(pageUrl) {
+                    var options = {
+                        url: pageUrl,
+                        title: 'Werktijd',
+                        allowMaximize: true,
+                        showClose: true,
+                        showMaximize: true,
+                        width: 1800,
+                        height: 900
+                    };
+                    SP.SOD.execute('sp.ui.dialog.js', 'SP.UI.ModalDialog.showModalDialog', options);
+
+                }
+            </script>
+                <a href="#" onclick="openDialog('https://werktijd.be/aanmelden');">Werktijd</a>
+        </div><i class="fa fa-caret-down"></i></button>
+
